@@ -1,20 +1,28 @@
 import React, { useState } from "react";
 
 export default function Register() {
-  const [form, setForm] = useState({
+  const initialFormState = {
     username: "",
     email: "",
     password: ""
-  });
+  };
 
-  const changeField = ({target}) =>
+  const [form, setForm] = useState(initialFormState);
+
+  const changeField = ({ target }) =>
     setForm({
       ...form,
       [target.name]: target.value
     });
 
+  const handleSubmit = event => {
+    event.preventDefault();
+    console.log(form);
+    setForm(initialFormState);
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <input
         type="text"
         name="username"
